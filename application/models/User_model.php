@@ -34,7 +34,7 @@ class User_model extends CI_Model{
      */
     public function login($username, $password) {
         if (is_null($this->curren_user)) {
-            $user = $this->db->get_where('users', array('username' => $username));
+            $user = $this->db->get_where('users', array('username' => $username))->row();
 
             if (!$user) {
                 //用户不存在
@@ -45,11 +45,11 @@ class User_model extends CI_Model{
 
         }
 
-        if ($this->curren_user['status'] !== "active") {
+        if ($this->curren_user->status !== "active") {
             return -3;
         }
 
-        if (password_verify($password, $this->curren_user['password'])) {
+        if (password_verify($password, $this->curren_user->password)) {
             return 0;
         }
         else {
@@ -83,10 +83,18 @@ class User_model extends CI_Model{
         $this->db->insert('users', $data);
     }
 
+    public function get_uid() {
+        if(is_null($this->curren_user)) {
+            return null;
+        }
+
+        return strval($this->curren_user->id);
+    }
+
     public function validate_uid($uid) {
-        if (is_null($this->curren_user) || $uid !== strval($this->curren_user["id"])) {
+        if (is_null($this->curren_user) || $uid !== strval($this->curren_user->id)) {
             //$current_user没有缓存或者不符合$uid，重新在数据库中查找
-            $user = $this->db->get_where('users', array("id" => $uid));
+            $user = $this->db->get_where('users', array("id" => $uid))->row();
 
             if (!$user) {
                 return -1;
@@ -95,7 +103,7 @@ class User_model extends CI_Model{
             $this->curren_user = $user;
         }
 
-        if ($this->curren_user["status"] !== "active") {
+        if ($this->curren_user->status !== "active") {
             return -3;
         }
 
