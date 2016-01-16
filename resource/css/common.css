@@ -1,12 +1,12 @@
+/*background color*/
 body {
     background-color: #F7F4F4;
 }
 
-/* Footer styles
+/* footer styles
 -------------------------------------------------- */
 .footer {
-    position: absolute;
-    bottom: 0;
+    /*position: absolute;*/
     width: 100%;
     /* Set the fixed height of the footer here */
     height: 60px;
@@ -17,7 +17,7 @@ body {
     margin: 20px 0;
 }
 
-/* Log in form styles
+/* log in form styles
 -------------------------------------------------- */
 .signin-container {
     padding-top: 40px;
@@ -45,4 +45,24 @@ body {
 }
 .input-group-addon {
     padding: 5px;
+}
+
+/*exploit page styles*/
+.exploit-title {
+    color: #444;
+    text-align: center;
+}
+
+.exploit-info {
+    margin-top: 1%;
+    background-color: #F5F2F0;
+    /*border: 1px solid #515151;*/
+}
+
+.exploit-label {
+    margin-top: 1%;
+}
+
+.exploit-href {
+    color: #444;
 }

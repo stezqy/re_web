@@ -124,6 +124,11 @@ class Auth extends CI_Controller {
         redirect("auth");
     }
 
+    public function add_user() {
+        $this->load->model("user_model");
+        $this->user_model->add_user("user", "world", "active", "user", time());
+    }
+
     public function captcha() {
         $this->load->library("captcha/CaptchaBuilder");
 

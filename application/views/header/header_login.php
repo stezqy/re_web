@@ -10,11 +10,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Login Page</title>
+    <title>Router Exploit</title>
     <link rel="stylesheet" href="<?=base_url().'resource/bootstrap/css/bootstrap.min.css'?>">
     <link rel="stylesheet" href="<?=base_url().'resource/css/common.css'?>">
     <script src="<?=base_url().'resource/bootstrap/js/jquery-1.11.3.min.js'?>"></script>
     <script src="<?=base_url().'resource/bootstrap/js/bootstrap.min.js'?>"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -40,13 +41,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">联系我们</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=$username?><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Another action</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">登出k</a></li>
+                        <li><a href="#">登出</a></li>
                     </ul>
                 </li>
             </ul>

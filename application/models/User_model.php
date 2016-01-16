@@ -77,7 +77,7 @@ class User_model extends CI_Model{
             'password' => $m_password,
             'status' => $m_status,
             'role' => $m_role,
-            update => $m_update,
+            'update' => $m_update,
         );
 
         $this->db->insert('users', $data);
@@ -89,6 +89,22 @@ class User_model extends CI_Model{
         }
 
         return strval($this->curren_user->id);
+    }
+
+    public function get_role() {
+        if(is_null($this->curren_user)) {
+            return null;
+        }
+
+        return strval($this->curren_user->role);
+    }
+
+    public function get_username() {
+        if(is_null($this->curren_user)) {
+            return null;
+        }
+
+        return strval($this->curren_user->username);
     }
 
     public function validate_uid($uid) {

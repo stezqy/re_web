@@ -10,7 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Login Page</title>
+    <title>Router Exploit</title>
     <link rel="stylesheet" href="<?=base_url().'resource/bootstrap/css/bootstrap.min.css'?>">
     <link rel="stylesheet" href="<?=base_url().'resource/css/common.css'?>">
     <script src="<?=base_url().'resource/bootstrap/js/jquery-1.11.3.min.js'?>"></script>

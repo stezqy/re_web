@@ -98,4 +98,13 @@ class Authentication {
         $this->ci->session->unset_userdata("uid");
         return true;
     }
+
+    public function is_admin() {
+        if ($role = $this->ci->user_model->get_role()) {
+            if ($role == "admin")
+                return true;
+        }
+
+        return false;
+    }
 }
