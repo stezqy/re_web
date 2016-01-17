@@ -19,7 +19,7 @@ class User_model extends CI_Model{
      */
 
     //缓存当前用户，避免多次查询
-    private $curren_user = null;
+    private $current_user = null;
 
     function __construct() {
         parent::__construct();
@@ -33,7 +33,8 @@ class User_model extends CI_Model{
      * @return int 0:登陆成功, -1:用户不存在, -2:密码错误, -3:用户被禁用
      */
     public function login($username, $password) {
-        if (is_null($this->curren_user)) {
+        if (is_null($this->current_user)) {
+            // SELECT * FORM USERS WHERE USERNAME IS $username
             $user = $this->db->get_where('users', array('username' => $username))->row();
 
             if (!$user) {
@@ -41,15 +42,15 @@ class User_model extends CI_Model{
                 return -1;
             }
 
-            $this->curren_user = $user;
+            $this->current_user = $user;
 
         }
 
-        if ($this->curren_user->status !== "active") {
+        if ($this->current_user->status !== "active") {
             return -3;
         }
 
-        if (password_verify($password, $this->curren_user->password)) {
+        if (password_verify($password, $this->current_user->password)) {
             return 0;
         }
         else {
@@ -84,31 +85,31 @@ class User_model extends CI_Model{
     }
 
     public function get_uid() {
-        if(is_null($this->curren_user)) {
+        if(is_null($this->current_user)) {
             return null;
         }
 
-        return strval($this->curren_user->id);
+        return strval($this->current_user->id);
     }
 
     public function get_role() {
-        if(is_null($this->curren_user)) {
+        if(is_null($this->current_user)) {
             return null;
         }
 
-        return strval($this->curren_user->role);
+        return strval($this->current_user->role);
     }
 
     public function get_username() {
-        if(is_null($this->curren_user)) {
+        if(is_null($this->current_user)) {
             return null;
         }
 
-        return strval($this->curren_user->username);
+        return strval($this->current_user->username);
     }
 
     public function validate_uid($uid) {
-        if (is_null($this->curren_user) || $uid !== strval($this->curren_user->id)) {
+        if (is_null($this->current_user) || $uid !== strval($this->current_user->id)) {
             //$current_user没有缓存或者不符合$uid，重新在数据库中查找
             $user = $this->db->get_where('users', array("id" => $uid))->row();
 
@@ -116,10 +117,10 @@ class User_model extends CI_Model{
                 return -1;
             }
 
-            $this->curren_user = $user;
+            $this->current_user = $user;
         }
 
-        if ($this->curren_user->status !== "active") {
+        if ($this->current_user->status !== "active") {
             return -3;
         }
 
